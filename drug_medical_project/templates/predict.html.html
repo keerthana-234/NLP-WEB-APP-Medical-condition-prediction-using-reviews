@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Drug Condition Prediction</h2>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="rawtext">Enter a sentence about your condition:</label>
+                <textarea class="form-control" id="rawtext" name="rawtext" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        {% if rawtext %}
+            <h3 class="mt-4">Prediction Result</h3>
+            <p><strong>Input Text:</strong> {{ rawtext }}</p>
+            <p><strong>Predicted Condition:</strong> {{ result }}</p>
+            <p><strong>Sentiment Analysis:</strong> {{ variable }}</p>
+            <h4>Top Drug Recommendations:</h4>
+            <ul>
+                {% for drug in top_drugs %}
+                    <li>{{ drug }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
